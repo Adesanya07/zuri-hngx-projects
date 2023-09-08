@@ -9,7 +9,7 @@ app.get('/api', async (req, res) => {
   const slack_name = req.query.slack_name;
   const track = req.query.track;
 
-  const currentDay = moment().format('dddd');  
+  const current_day = moment().format('dddd');  
 
   const utcTime = moment().utc().format('YYYY-MM-DDTHH:mm:ss[Z]');
 
@@ -22,20 +22,19 @@ app.get('/api', async (req, res) => {
   const utc_time = new Date().toISOString().slice(0, -5) + 'Z';
 
   // Get GitHub URLs
-  const username = 'Adesanya07'; 
-  const repo = 'zuri-hngx-projects';
+  
 
-  const githubFileUrl = `https://github.com/${username}/${repo}/blob/main/index.js`;
+  const github_file_url = 'https://github.com/Adesanya07/zuri-hngx-projects/blob/main/stage-1/index.js';
 
-  const githubRepoUrl = `https://github.com/${username}/${repo}`;
+  const github_repo_url = 'https://github.com/Adesanya07/zuri-hngx-projects/tree/main/stage-1';
 
   const response = {
     slack_name,
     track,
-    currentDay,
+    current_day,
     utc_time,
-    githubFileUrl,
-    githubRepoUrl,
+    github_file_url,
+    github_repo_url,
     status_code: 200
   };
 
