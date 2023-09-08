@@ -6,7 +6,7 @@ const app = express();
 
 app.get('/api', async (req, res) => {
 
-  const slackName = req.query.slack_name;
+  const slack_name = req.query.slack_name;
   const track = req.query.track;
 
   const currentDay = moment().format('dddd');  
@@ -19,6 +19,8 @@ app.get('/api', async (req, res) => {
     return res.status(500).json({error: 'Invalid UTC time'});
   }
 
+  const utc_time = new Date().toISOString().slice(0, -5) + 'Z';
+
   // Get GitHub URLs
   const username = 'Adesanya07'; 
   const repo = 'zuri-hngx-projects';
@@ -28,10 +30,10 @@ app.get('/api', async (req, res) => {
   const githubRepoUrl = `https://github.com/${username}/${repo}`;
 
   const response = {
-    slack_name: "Gabriel Adesanya",
+    slack_name,
     track,
     currentDay,
-    utcTime,
+    utc_time,
     githubFileUrl,
     githubRepoUrl,
     status_code: 200
@@ -41,7 +43,7 @@ app.get('/api', async (req, res) => {
 
 });
 
-//app.listen(3000, () => console.log('Server listening on port 3000'));
+app.listen(3000, () => console.log('Server listening on port 3000'));
 
 
   
